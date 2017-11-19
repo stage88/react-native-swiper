@@ -274,14 +274,14 @@ export default class extends Component {
     // since defaultProps of index is 0
     // when nextProps didnt contain index, initial offset would be { 0, 0 }
     initState.offset[initState.dir] = initState.dir === 'y'
-      ? height * initState.index
-      : width * initState.index;
+      ? initState.height * initState.index
+      : initState.width * initState.index;
 
     // fix render last page first when loop = true
     if (props.loop) {
       initState.offset[initState.dir] = initState.dir === 'y'
-        ? height * (initState.index + 1)
-        : width * (initState.index + 1);
+        ? initState.height * (initState.index + 1)
+        : initState.width * (initState.index + 1);
     }
 
     if (state.total === initState.total && !props.updateIndex) {
