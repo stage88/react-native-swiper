@@ -11,11 +11,12 @@ import {
   ScrollView,
   Dimensions,
   TouchableOpacity,
-  ViewPagerAndroid,
   Platform,
   ActivityIndicator,
   PanResponder,
 } from 'react-native'
+
+import ViewPager from '@react-native-community/viewpager';
 
 /**
  * Default styles
@@ -205,7 +206,7 @@ export default class extends Component {
         onMoveShouldSetPanResponderCapture: shouldSetResponder,
         onPanResponderRelease: () => false,
         onPanResponderTerminate: () => false,
-        // blocking nativeResponder makes it hard to scroll ViewPagerAndroid in a ScrollView
+        // blocking nativeResponder makes it hard to scroll ViewPager in a ScrollView
         // I don't know how it works since I know little about java, but it did work in my case
         onShouldBlockNativeResponder: () => false,
       })
@@ -670,7 +671,7 @@ export default class extends Component {
        )
     }
     return (
-      <ViewPagerAndroid ref={this.refScrollView}
+      <ViewPager ref={this.refScrollView}
         {...this.props}
         initialPage={this.props.loop ? this.state.index + 1 : this.state.index}
         onPageSelected={this.onScrollEnd}
@@ -679,7 +680,7 @@ export default class extends Component {
         {...this._panResponder.panHandlers}
       >
         {pages}
-      </ViewPagerAndroid>
+      </ViewPager>
     )
   }
 
